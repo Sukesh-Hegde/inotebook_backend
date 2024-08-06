@@ -3,11 +3,16 @@ import { connectUsingMongoose } from "./db.js";
 import authRouter from "./routes/auth.js";
 import noteRouter from "./routes/notes.js";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 connectUsingMongoose();
 const app = express();
 app.use(cors());
-app.use(cors({ origin: "https://inotebook-8btc.onrender.com" }));
+const host = process.env.REACT_APP_FRONTEND_URL;
+
+app.use(cors({ origin: host }));
 
 const port = process.env.PORT || 4000;
 
@@ -18,4 +23,5 @@ app.use("/api/notes", noteRouter);
 
 app.listen(port, () => {
   console.log(`iNotebook app listening at http://localhost:${port}`);
+  console.log(host);
 });

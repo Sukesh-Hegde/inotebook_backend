@@ -11,8 +11,8 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
-app.use("/api/auth", authRouter);
-app.use("/api/notes", noteRouter);
+app.use("https://inotebook-backend-rrv6.onrender.com/api/auth", authRouter);
+app.use("https://inotebook-backend-rrv6.onrender.com/api/notes", noteRouter);
 
 
 app.listen(port, () => {
